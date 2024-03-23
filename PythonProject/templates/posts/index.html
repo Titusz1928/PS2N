@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <h1>Senzori</h1>
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/LM35.jpg') }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">LM35</h5>
+        <p class="card-text">The current temperature is: {{ sensor_data }} °C</p>
+      </div>
+    </div>
+
+<h1>Led</h1>
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ url_for('static', filename='images/led.png') }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Led</h5>
+        <p class="card-text">Ledul este: {{ status_led }}</p>
+         <form action="/turn-on" method="post">
+                <button type="submit" class="btn btn-success">Aprinde</button>
+            </form>
+            <form action="/turn-off" method="post">
+                <button type="submit" class="btn btn-danger">Stinge</button>
+            </form>
+      </div>
+    </div>
+
+     <!-- Add refresh meta tag here -->
+    <meta http-equiv="refresh" content="60;url={{ url_for('temp_refresh') }}"> <!-- Refresh the page every 5 seconds -->
+
+
+{% endblock %}
