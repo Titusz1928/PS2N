@@ -44,8 +44,9 @@ def posts():
     global data
     global statusLed
 
-    #time.sleep(3)
+
     #arduino = serial.Serial(port='COM3', baudrate=9600, timeout=10)
+
     data = arduino.readline().decode('utf-8').strip()
     parts = data.split(' ', 1)
     data = parts[0]
@@ -54,7 +55,6 @@ def posts():
     statusLed = parts[1] if len(parts) > 1 else aux
     print(statusLed)
     return render_template('posts/index.html', sensor_data=data, status_led=statusLed)
-    #return render_template('posts/index.html')
     arduino.close()
 
 if __name__ == "__main__":
